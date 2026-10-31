@@ -4,6 +4,7 @@ import ipaddress
 import os
 from pathlib import Path
 import queue
+import sys
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -146,4 +147,8 @@ class App:
 if __name__ == '__main__':
     root = tk.Tk()
     App(root)
-    root.mainloop()
+    if '--smoke-test' in sys.argv:
+        root.update()
+        root.destroy()
+    else:
+        root.mainloop()

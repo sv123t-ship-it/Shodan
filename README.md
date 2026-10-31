@@ -5,6 +5,22 @@ Shodan에 이미 수집된 IP·포트별 정보를 조회하며, 대상에 직�
 
 ## GUI 설치 및 실행 (Windows CMD)
 
+### Python 설치 없이 실행 (Windows 64비트)
+
+1. GitHub 저장소의 **Actions → Build Windows EXE**에서 최신 성공 실행을 엽니다.
+2. **Artifacts → ShodanExcel-Windows-x64**를 다운로드하고 ZIP 압축을 풉니다.
+3. `ShodanExcel.exe`를 더블클릭합니다. API 키와 조회 대역, 저장 경로를 입력하세요.
+
+빌드는 `main`에 푸시할 때 자동 실행되며 Actions에서 수동 실행도 가능합니다.
+다운로드에는 GitHub 로그인이 필요할 수 있습니다. 실행 파일은 코드 서명되지 않았습니다.
+실행 중에도 Shodan API에 연결할 인터넷과 유효한 API 키가 필요합니다.
+
+직접 빌드하려면 Windows에 Python 3.10 이상(Tcl/Tk 포함)을 설치한 후
+CMD에서 `build_windows.bat`를 실행하세요. 결과는 `dist\ShodanExcel.exe`입니다.
+빌드할 때만 Python이 필요하며, 완성된 EXE를 실행할 PC에는 필요하지 않습니다.
+
+### Python으로 실행
+
 ```bat
 cd Shodan
 py -m venv .venv
