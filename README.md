@@ -1,9 +1,28 @@
 # Shodan IP 대역 Excel 내보내기
 
-GUI 없이 Windows CMD 또는 터미널에서 실행하는 Python 3.10+ 프로그램입니다.
+GUI 또는 Windows CMD/터미널에서 실행하는 Python 3.10+ 프로그램입니다.
 Shodan에 이미 수집된 IP·포트별 정보를 조회하며, 대상에 직접 스캔을 보내지 않습니다.
 
-## 설치 및 실행 (Windows CMD)
+## GUI 설치 및 실행 (Windows CMD)
+
+```bat
+cd Shodan
+py -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python shodan_gui.py
+```
+
+창에서 API 키, IP/CIDR 대역, 최대 페이지 수, Excel 저장 경로를 입력하고
+**조회 후 Excel 저장**을 누르세요. API 키는 마스킹되며 디스크에 저장하지 않습니다.
+`SHODAN_API_KEY` 환경 변수가 있으면 자동 입력됩니다.
+진행 상황과 완료/오류가 창에 표시됩니다. 기존 파일은 덮어쓰지 않으므로 새 파일명을 선택하세요.
+조회 중에는 중복 실행과 창 닫기가 제한됩니다. 네트워크 시간 제한과 재시도 때문에 응답에 시간이 걸릴 수 있습니다.
+
+GUI는 Python 기본 Tkinter를 사용합니다. Windows Python 설치 시 Tcl/Tk 구성 요소를 포함하세요.
+Linux에서는 배포판의 `python3-tk` 패키지와 데스크톱 화면이 필요합니다.
+
+## 명령줄 실행 (Windows CMD)
 
 ```bat
 cd Shodan

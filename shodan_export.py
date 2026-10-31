@@ -43,7 +43,7 @@ def search(api_key, network, page):
             raise ShodanError('Shodan 응답을 해석할 수 없습니다.') from None
 
 
-def collect(api_key, network, max_pages, fetch=search):
+def collect(api_key, network, max_pages, fetch=search, progress=None):
     rows = []
     total = 0
     for page in range(1, max_pages + 1):
@@ -61,7 +61,11 @@ def collect(api_key, network, max_pages, fetch=search):
             except (KeyError, TypeError, ValueError):
                 raise ShodanError('조회 대역과 일치하지 않는 IP 응답입니다.') from None
         rows.extend(matches)
-        print(f'{page} 페이지: {len(rows)} / {total}개 서비스', file=sys.stderr)
+        message = f'{page} 페이지: {len(rows)} / {total}개 서비스'
+        if progress is None:
+            print(message, file=sys.stderr)
+        else:
+            progress(message)
         if not matches or len(rows) >= total:
             break
         if page < max_pages:
